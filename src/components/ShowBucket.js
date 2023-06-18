@@ -1,56 +1,53 @@
-import React , {useState} from 'react';
-import App from '../App';
+import { useState, useEffect } from 'react';
 import '../styles.css';
-import {S3Client, ListObjectsV2Command} from "@aws-sdk/client-s3";
-// import { fileURLToPath } from 'url';
+import AWS from 'aws-sdk';
+
+const S3_BUCKET ='jols-bucket';
+const REGION ='us-east-1';
+const API_ACCESS = process.env.REACT_APP_ACCESS;
+const API_SECRET = process.env.REACT_APP_SECRET;
+
+AWS.config.update({
+  accessKeyId: API_ACCESS,
+  secretAccessKey: API_SECRET,
+  region: REGION,
+});
+
+const s3 = new AWS.S3();
+
+const params = {
+  Bucket: S3_BUCKET,
+  Delimiter: '',
+//   Prefix: 'images/',
+};
 
 const ShowBucket = () => {
-    
-/*   
-const params = {
- Bucket: 'my-bucket',
+  const [listFiles, setListFiles] = useState([]);
+
+  useEffect(() => {
+    s3.listObjectsV2(params, (err, data) => {
+      if (err) {
+        console.log(err, err.stack);
+      } else {
+        setListFiles(data.Contents);
+        console.log(data.Contents);
+      }
+    });
+  }, []);
+
+  return (
+    <div className='card'>
+      <div className='card-header'>Listing all objects in {S3_BUCKET}:</div>
+      <ul className='list-group'>
+        {listFiles &&
+          listFiles.map((name, index) => (
+            <li className='list-group-item' key={index}>
+              {name.Key}
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
 };
-const command = new ListObjectsCommand(params);
-const data = await s3.send(command); */
-
-    const s3Client = new S3Client({
-        region: 'us-east-1',
-        endpoint: 'http://localhost:4566',
-        forcePathStyle: true
-    })
-
-    let listObjectsParams = {
-        Bucket: "jols-bucket",
-        // The default and maximum number of keys returned is 1000. This limits it to
-        // one for demonstration purposes.
-        MaxKeys: 10,
-    }
-    // s3Client.send(listObjectsCmd)
-
-        
-    // listObjectsCmd = new ListObjectsV2Command(listObjectsParams)
-        
-    App.get('/images', (req, res) => {
-        listObjectsParams = {
-            Bucket: "jols-bucket",
-            // The default and maximum number of keys returned is 1000. This limits it to
-            // one for demonstration purposes.
-            MaxKeys: 10,
-        }
-        s3Client
-        .send(new ListObjectsV2Command(listObjectsParams))
-        .then((listObjectsResponse) => {
-            res.send(listObjectsResponse)
-        })
-    })    
-    return <div>
-    <div>Show Bucket list overview</div>
-    <div>Select a bucket and show image files</div>
-    <div><h3>list Objects Response: </h3></div>
-    <br></br>
-    <button></button>
-</div>
-}
-
 
 export default ShowBucket;
