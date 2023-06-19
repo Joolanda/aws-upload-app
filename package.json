@@ -61,5 +61,6 @@
     "whitelist": [
       "API_URL"
     ]
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
