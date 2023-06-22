@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../styles.css';
 import AWS from 'aws-sdk';
+import DownloadImages from "./DownloadImages";
 
 const S3_BUCKET ='jols-bucket';
 const REGION ='us-east-1';
@@ -20,7 +21,9 @@ const params = {
   Delimiter: '',
 //   Prefix: 'images/',
 };
-
+const doSomething = () => {
+  alert('Your selected image is not downloaded, maybe next time!');
+}
 const ShowBucket = () => {
   const [listFiles, setListFiles] = useState([]);
 
@@ -41,7 +44,7 @@ const ShowBucket = () => {
       <ul className='list-group'>
         {listFiles &&
           listFiles.map((name, index) => (
-            <li className='list-group-item' key={index}>
+            <li className='list-group-item' key={index} onClick={doSomething}>
               {name.Key}
             </li>
           ))}
