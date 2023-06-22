@@ -16,33 +16,45 @@ AWS.config.update({
 });
 
 exports.handler = async(event) => {
-    // Read data from event object.
-    const region = event.Records[0].awsRegion
-    const sourceBucket = event.Records[0].s3.bucket.name
-    const sourceKey = event.Records[0].s3.object.key
+  // Read data from event object.
+  const region = event.Records[0].awsRegion
+  const sourceBucket = event.Records[0].s3.bucket.name
+  const sourceKey = event.Records[0].s3.object.key
  
-    // Instantiate a new S3 client.
-    const s3Client = new S3Client({
-        region: region
-    })
+  // Instantiate a new S3 client.
+  const s3Client = new S3Client({
+    region: region
+  })
 
-    // Create an object with parameters for CopyObjectCommand.
-    // for refactoring later, using environmental variables Bucket: process.env.DEST_BUCKET,
-   const copyObjectParams = {
-    // Bucket: process.env.DEST_BUCKET,
-    Bucket: DEST_BUCKET,
-    Key: sourceKey,
-    CopySource: `${sourceBucket}/${sourceKey}`
-    }
-    // Create a helper function to execute the copy operation. FInd other ways then promise chaining.
-    // Create an object with parameters for putObjectCommand
+  try {
+    const copyObjectParams = {
+      Bucket: DEST_BUCKET,
+      Key: sourceKey,
+      CopySource: `${sourceBucket}/${sourceKey}`
+    };
     const putObjectParams = {
-        Bucket: DEST_BUCKET,
-        Key: sourceKey,
-        CopySource: `${sourceBucket}/${sourceKey}`
-    }
+      Bucket: `${bucket}-resized`,
+      Key: `resized-${key}`,
+      Body: resizedImage,
+    };
+
+    const data = await s3Client.send(new GetObjectCommand(params));
+    const resizedImage = await sharp(data.Body)
+      .resize(200, 200)
+      .toBuffer();
     const putObjectResult = await s3Client.send(new PutObjectCommand(putObjectParams));
     const copyObjectResult = await s3Client.send(new CopyObjectCommand(copyObjectParams));
-  
-    return { putObjectResult, copyObjectResult };
+    
+    return {
+      statusCode: 200,
+      body: JSON.stringify('Image is resized and uploaded successfully'),
+    };
+
+  } catch (err) {
+    console.log(err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify('Error resizing and uploading img'),
+    };
+  }
 };
