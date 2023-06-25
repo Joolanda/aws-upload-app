@@ -32,6 +32,8 @@ exports.handler = async(event) => {
       Key: sourceKey,
       CopySource: `${sourceBucket}/${sourceKey}`
     };
+    console.log('copyObjectParams: ', copyObjectParams);
+    
     const putObjectParams = {
       // Bucket: `${bucket}-resized`,
       Bucket: `${bucket}`,
