@@ -18,7 +18,7 @@ const myBucket = new AWS.S3({
     region: REGION,
 })
 
-const UploadToJolsBucket = () => {
+const UploadToBucket = () => {
 
     const [progress , setProgress] = useState(0);
     const [selectedFile, setSelectedFile] = useState(null);

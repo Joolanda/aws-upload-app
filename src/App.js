@@ -1,7 +1,7 @@
 
 import './App.css';
 import ShowBucket from "./components/ShowBucket";
-import UploadJolsBucket from "./components/UploadJolsBucket";
+import UploadToBucket from "./components/UploadToBucket";
 /* import DownloadImages from "./components/DownloadImages"; */
 
 const App = () => {
