@@ -67,12 +67,20 @@ const handleClick = (e) => {
 
   return (
     <>
-      <form className='bg-white my-4' onSubmit={handleClick}>
+    <div className='card'>
+      <div className='card-header'>Upload objects in {S3_BUCKET}:</div>
+      <ul>
+          <li className='list-group-item' key={image} onClick={handleDownload}>
+            {image}
+          </li>
+      </ul>
+    </div>
+ {/*      <form className='bg-white my-4' onSubmit={handleClick}>
         <Dropdown>
           <Dropdown.Toggle variant='secondary' id='dropdown-basic'>
             {image}
           </Dropdown.Toggle>
-
+name
           <Dropdown.Menu>
             <Dropdown.Item onSelect={() => setImage('T1')}>
               T1</Dropdown.Item>
@@ -95,7 +103,7 @@ const handleClick = (e) => {
           onClick={handleDownload}
         />
       
-      </form>
+      </form> */}
     </>
   );
 };

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import '../styles.css';
 import AWS from 'aws-sdk';
-import DownloadImages from "./DownloadImages";
+//import DownloadImages from "./DownloadImages";
 
-const S3_BUCKET ='jols-bucket';
+const S3_BUCKET ='sharky-bucket';
 const REGION ='us-east-1';
 const API_ACCESS = process.env.REACT_APP_ACCESS;
 const API_SECRET = process.env.REACT_APP_SECRET;

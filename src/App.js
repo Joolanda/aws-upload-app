@@ -1,16 +1,16 @@
 
 import './App.css';
 import ShowBucket from "./components/ShowBucket";
-import UploadToJolsBucket from "./components/UploadToJolsBucket";
-import DownloadImages from "./components/DownloadImages";
+import UploadJolsBucket from "./components/UploadJolsBucket";
+/* import DownloadImages from "./components/DownloadImages"; */
 
 const App = () => {
   return(
       <div className="App">
         <header>
-          <UploadToJolsBucket />
+          <UploadToBucket />
           <ShowBucket />
-          <DownloadImages />
+{/*           <DownloadImages /> */}
         </header>
     </div>
    );

@@ -3,7 +3,7 @@ import React , {useState} from 'react';
 import '../styles.css';
 import AWS from 'aws-sdk'
 
-const S3_BUCKET ='jols-bucket';
+const S3_BUCKET ='sharky-bucket';
 const REGION ='us-east-1';
 const API_ACCESS = process.env.REACT_APP_ACCESS;
 const API_SECRET = process.env.REACT_APP_SECRET;
@@ -33,6 +33,7 @@ const UploadToJolsBucket = () => {
             ACL: 'public-read',
             Body: file,
             Bucket: S3_BUCKET,
+            // prefix: 'original-images/',
             Key: file.name
         };
 
