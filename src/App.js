@@ -1,13 +1,13 @@
 
 import './App.css';
 import ShowBucket from "./components/ShowBucket";
-import UploadToJolsBucket from "./components/UploadToJolsBucket";
+import UploadToBucket from "./components/UploadToBucket";
 
 const App = () => {
   return(
       <div className="App">
         <header>
-          <UploadToJolsBucket />
+          <UploadToBucket />
           <ShowBucket />
         </header>
     </div>

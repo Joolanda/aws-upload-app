@@ -55,4 +55,4 @@ const UploadToJolsBucket = () => {
     </div>
 }
 
-export default UploadToJolsBucket;
+export default UploadToBucket;
