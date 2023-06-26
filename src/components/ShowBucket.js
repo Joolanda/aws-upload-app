@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../styles.css';
 import AWS from 'aws-sdk';
+// import DownloadImages from "./DownloadImages";
 
 const S3_BUCKET ='jols-bucket';
 const REGION ='us-east-1';
@@ -15,34 +16,44 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-const params = {
+const showBucketparams = {
   Bucket: S3_BUCKET,
   Delimiter: '',
-//   Prefix: 'images/',
 };
 
 const ShowBucket = () => {
   const [listFiles, setListFiles] = useState([]);
 
   useEffect(() => {
-    s3.listObjectsV2(params, (err, data) => {
+    s3.listObjectsV2(showBucketparams, (err, data) => {
       if (err) {
         console.log(err, err.stack);
       } else {
         setListFiles(data.Contents);
         console.log(data.Contents);
+        return setListFiles(data.Contents);
       }
     });
   }, []);
 
   return (
     <div className='card'>
-      <div className='card-header'>Listing all objects in {S3_BUCKET}:</div>
+      <div className='card-header'><h3>Listing all objects in {S3_BUCKET}:</h3></div>
+      <h3>Click on the image to download it</h3>
       <ul className='list-group'>
         {listFiles &&
           listFiles.map((name, index) => (
-            <li className='list-group-item' key={index}>
-              {name.Key}
+            <li className='list-group-item' key={index} data-key={name.Key}>
+              <a href={`https://${S3_BUCKET}.s3.amazonaws.com/${name.Key}`} onClick={() => {
+                const dowloadImageparams = {
+                  Bucket: S3_BUCKET,
+                  Key: name.Key,
+                  Expires: 60 * 60 // time in seconds
+                };
+                const url = s3.getSignedUrl('getObject', dowloadImageparams);
+                const modified_url = url.replace(`https://${S3_BUCKET}.s3.amazonaws.com/`, '');
+                console.log(modified_url);
+              }}>{name.Key}</a>
             </li>
           ))}
       </ul>

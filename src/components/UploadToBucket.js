@@ -18,7 +18,8 @@ const myBucket = new AWS.S3({
     region: REGION,
 })
 
-const UploadToJolsBucket = () => {
+const UploadToBucket = () => {
+
 
     const [progress , setProgress] = useState(0);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -33,6 +34,7 @@ const UploadToJolsBucket = () => {
             ACL: 'public-read',
             Body: file,
             Bucket: S3_BUCKET,
+            // prefix: 'original-images/',
             Key: file.name
         };
 
