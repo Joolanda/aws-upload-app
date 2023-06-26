@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ListGroup, Dropdown } from 'react-bootstrap';
 import AWS from 'aws-sdk';
 
-const S3_BUCKET ='jols-bucket';
+const S3_BUCKET ='shark-bucket';
 const REGION ='us-east-1';
 const API_ACCESS = process.env.REACT_APP_ACCESS;
 const API_SECRET = process.env.REACT_APP_SECRET;
