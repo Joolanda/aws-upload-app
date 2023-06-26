@@ -20,6 +20,7 @@ const myBucket = new AWS.S3({
 
 const UploadToBucket = () => {
 
+
     const [progress , setProgress] = useState(0);
     const [selectedFile, setSelectedFile] = useState(null);
 
