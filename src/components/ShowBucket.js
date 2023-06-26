@@ -19,11 +19,8 @@ const s3 = new AWS.S3();
 const showBucketparams = {
   Bucket: S3_BUCKET,
   Delimiter: '',
-//Prefix: 'images/',
 };
-const doSomething = () => {
-  alert('Your selected image is probably not downloaded, maybe next time!');
-}
+
 const ShowBucket = () => {
   const [listFiles, setListFiles] = useState([]);
 
@@ -34,21 +31,11 @@ const ShowBucket = () => {
       } else {
         setListFiles(data.Contents);
         console.log(data.Contents);
+        return setListFiles(data.Contents);
       }
     });
   }, []);
 
-  const dowloadImageparams = {
-    // ACL: 'public-read',
-    Bucket: 'jols-bucket',
-    Key:  `${listFiles.name}`,
-    // Key: 'images/IMG_20210606_123456.jpg',
-    Expires: 60 * 60 // time in seconds
-  };
-  
-  const url = s3.getSignedUrl('getObject', dowloadImageparams);
-  console.log(url);
-  // <Dropdown.Item onSelect={() => setImage('DV1')}>
   return (
     <div className='card'>
       <div className='card-header'><h3>Listing all objects in {S3_BUCKET}:</h3></div>
@@ -56,8 +43,17 @@ const ShowBucket = () => {
       <ul className='list-group'>
         {listFiles &&
           listFiles.map((name, index) => (
-            <li className='list-group-item' key={index} onClick={doSomething}>
-              <a href={url}> {name.Key}</a>
+            <li className='list-group-item' key={index} data-key={name.Key}>
+              <a href={`https://${S3_BUCKET}.s3.amazonaws.com/${name.Key}`} onClick={() => {
+                const dowloadImageparams = {
+                  Bucket: S3_BUCKET,
+                  Key: name.Key,
+                  Expires: 60 * 60 // time in seconds
+                };
+                const url = s3.getSignedUrl('getObject', dowloadImageparams);
+                const modified_url = url.replace(`https://${S3_BUCKET}.s3.amazonaws.com/`, '');
+                console.log(modified_url);
+              }}>{name.Key}</a>
             </li>
           ))}
       </ul>
