@@ -18,6 +18,7 @@ const s3 = new AWS.S3();
 
 const showBucketparams = {
   Bucket: S3_BUCKET,
+  // prefix: 'original-images',
   Delimiter: '/',
 };
 
@@ -56,7 +57,7 @@ const ShowBucket = () => {
                 console.log(modified_url);
               }}>
                 <div className='overlay'><span>{name.Key} </span></div>
-                <div><img src={`https://${S3_BUCKET}.s3.amazonaws.com/${name.Key}`} alt='My Image' /></div> 
+                <div><img src={`https://${S3_BUCKET}.s3.amazonaws.com/${name.Key}`} alt='another dragon' /></div> 
               </a>
             </li>
           ))}

@@ -2,8 +2,6 @@
 import './App.css';
 import ShowBucket from "./components/ShowBucket";
 import UploadToBucket from "./components/UploadToBucket";
-/* import DownloadImages from "./components/DownloadImages"; */
-
 
 const App = () => {
   return(
@@ -11,7 +9,6 @@ const App = () => {
         <header>
           <UploadToBucket />
           <ShowBucket />
-{/*           <DownloadImages /> */}
         </header>
     </div>
    );

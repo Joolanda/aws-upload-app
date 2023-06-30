@@ -5,20 +5,24 @@
 }
 
 h1 {
-  color: rgb(234, 223, 250);
-  text-align: center;
-  
+  color: #e6ecfa;
+  text-align: ce;
+  font-size: 1.5rem;
+  margin-left: 6rem;
 }
 
 h2 {
   color: rgb(234, 223, 250);
-  text-align: center;
+  text-align: left;
+  font-size: 1.5rem;
 }
 
 h3 {
   color: rgb(226, 230, 240);
-  text-align: left;
-  margin-left: 20rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 
 a {
@@ -47,12 +51,6 @@ body {
   text-align: center;
 }
 
-h1 {
-  color: #e6ecfa;
-  text-align: center;
-  padding-top: 3rem;
-}
-
 .App {
   background-color: #8e70f8;
   text-align: center;
@@ -61,12 +59,6 @@ h1 {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -88,12 +80,14 @@ h1 {
   font-family: 'Montserrat', 'Helvetica Neue LT', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #8e70f8;
   font-weight: bold;
-  background-color: rgb(228, 207, 227);
-  border-color: rgb(228, 207, 227);
+  background-color: #f3eef5;
+  /* background-color: rgb(228, 207, 227); */
+  border-color:  #8e70f8;
   text-decoration: none;
   margin-top: 10px;
-  padding: 10px 20px;
-  border-radius: 5px;
+  margin-left: 14px;
+  padding: 12px 20px;
+  border-radius: 1.4rem;
 }
 .button__datei {
   font-family: 'Montserrat', 'Helvetica Neue LT', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -102,11 +96,13 @@ h1 {
   border-color: rgb(228, 207, 227);
   text-decoration: none;
   margin-top: 10px;
-  padding: 10px 10px;
-  border-radius: 5px;
+  padding: 12px 12px;
+  border-radius: 1.4rem;
 }
 .button__primary:hover {
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  background-color: #8e70f8;
+  color: #f3eef5;
   transform: translateY(-2px);
   cursor: pointer;
 }
@@ -115,8 +111,16 @@ h1 {
   transform: translateY(-2px);
   cursor: pointer;
 }
-
-
+.card {
+  font-family: 'Montserrat', 'Helvetica Neue LT', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: calc(10px + 2vmin);
+  text-align: left;
+  margin-top: 15px;
+  color: rgb(228, 207, 227);
+  background-color: #8e70f8;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
 .card-header {
   font-family: 'Montserrat', 'Helvetica Neue LT', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: calc(10px + 2vmin);
@@ -149,6 +153,9 @@ Responsive Image gallery Style rules
 ======================================*/
 
 .container-image-gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
   padding: 40px 5%;
 }
 
