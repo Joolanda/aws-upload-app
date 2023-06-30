@@ -4,15 +4,25 @@
   font-family: "Inter", sans-serif;
 }
 
+h1 {
+  color: #e6ecfa;
+  text-align: ce;
+  font-size: 1.5rem;
+  margin-left: 6rem;
+}
+
 h2 {
   color: rgb(234, 223, 250);
-  text-align: center;
+  text-align: left;
+  font-size: 1.5rem;
 }
 
 h3 {
   color: rgb(226, 230, 240);
-  text-align: left;
-  margin-left: 20rem;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
 }
 
 a {
@@ -39,12 +49,6 @@ body {
   width: 90vw;
   font-size: 100%;
   text-align: center;
-}
-
-h1 {
-  color: #e6ecfa;
-  text-align: center;
-  padding-top: 3rem;
 }
 
 .App {
@@ -107,7 +111,16 @@ h1 {
   transform: translateY(-2px);
   cursor: pointer;
 }
-
+.card {
+  font-family: 'Montserrat', 'Helvetica Neue LT', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: calc(10px + 2vmin);
+  text-align: left;
+  margin-top: 15px;
+  color: rgb(228, 207, 227);
+  background-color: #8e70f8;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
 .card-header {
   font-family: 'Montserrat', 'Helvetica Neue LT', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: calc(10px + 2vmin);
@@ -140,6 +153,9 @@ Responsive Image gallery Style rules
 ======================================*/
 
 .container-image-gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
   padding: 40px 5%;
 }
 

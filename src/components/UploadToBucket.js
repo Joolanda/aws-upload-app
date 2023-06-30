@@ -34,7 +34,7 @@ const UploadToBucket = () => {
             ACL: 'public-read',
             Body: file,
             Bucket: S3_BUCKET,
-            // prefix: 'original-images/',
+            prefix: 'original-images/',
             Key: file.name
         };
 
@@ -49,9 +49,10 @@ const UploadToBucket = () => {
 
 
     return <div>
-        <div>
+        <div className='container-intro-cloud-project'>
+            <h1> AWS NODEjs Image Uploader</h1>
             <h3> As part of my Cloud Computing for Web Developers, I created an application that allows you to upload images to the cloud. Using a Lambda function, the uploaded images are resized to thumnail format. Techniques used:  AWS SDK and see further my github repo link. To be continued...</h3>
-            <h1>AWS SDK File Upload Progress is {progress}%</h1>
+            <h3>AWS SDK File Upload Progress is {progress}%</h3>
         </div>
         <input className="button__datei" type="file" onChange={handleFileInput}/>
         <button className="button__primary" onClick={() => uploadFile(selectedFile)}> Upload to S3</button>
